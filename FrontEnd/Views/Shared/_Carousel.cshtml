@@ -1,0 +1,46 @@
+﻿@{
+    //need ViewBag.CarItems as a list of dictionary<string, strings>
+    //Then add [title, lead, btn (for the btn class, ie 'success'), href, img]
+    int counter = 0;
+}
+
+<div id="myCarousel" class="container-wrapper container-top container-wrapper-home carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        @foreach (var item in ViewBag.CarItems)
+        {
+            <li data-target="#myCarousel" data-slide-to="@Html.Raw(counter)" @if (counter == 0) { @Html.Raw("class=\"active\""); }></li>
+            counter++;
+        }
+    </ol>
+    <div class="carousel-inner">
+        @{ counter = 0; }
+        @foreach (var item in ViewBag.CarItems)
+        {
+            <div class="item @if(counter++ == 0) { @Html.Raw("active"); }">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                                <h1>@Html.Raw(item["title"])</h1>
+                                <p class="lead">@Html.Raw(item["lead"])</p>
+                                <p class="btn btn-lg btn-@Html.Raw(item["btn"])">Learn More</p>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="@Html.Raw(item["img"])" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
+    <a class="right  carousel-control" href="#myCarousel" data-slide="next"><span class="fa fa-chevron-right"></span></a>
+</div>
+
+<div class="clear"></div>
+
+@section scripts {
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/zion.js"></script>
+}

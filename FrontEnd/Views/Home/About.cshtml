@@ -1,7 +1,19 @@
 ﻿@{
     ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+    ViewBag.TopColor = "mint";
+
+    ViewBag.Heading = new System.Collections.Generic.List<string>();
+    ViewBag.Content = new System.Collections.Generic.List<string>();
+    
+    ViewBag.Heading.Add("Heading 1");
+    ViewBag.Heading.Add("Heading 2");
+    ViewBag.Content.Add("This is content");
+    ViewBag.Content.Add("This is second content");
+}
+
+@Html.Partial("_TopRow")
+
+@Html.Partial("_doubleColContent")
+
+@Html.Partial("_ourTeam")

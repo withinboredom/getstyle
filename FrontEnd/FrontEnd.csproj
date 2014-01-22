@@ -342,6 +342,14 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_TopRow.cshtml" />
+    <Content Include="Views\Shared\_doubleColContent.cshtml" />
+    <Content Include="Views\Shared\_ourTeam.cshtml" />
+    <Content Include="Views\Shared\_googleMapSimple.cshtml" />
+    <Content Include="Views\Shared\_messageForm.cshtml" />
+    <Content Include="Views\Account\View1.cshtml" />
+    <Content Include="Views\Shared\_Carousel.cshtml" />
+    <Content Include="Views\Shared\_CallOuts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
