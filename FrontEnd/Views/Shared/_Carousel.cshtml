@@ -1,46 +1,60 @@
 ﻿@{
-    //need ViewBag.CarItems as a list of dictionary<string, strings>
-    //Then add [title, lead, btn (for the btn class, ie 'success'), href, img]
-    int counter = 0;
+    var launch = new DateTime(2014, 09, 30);
+    var days = (launch - DateTime.Now).TotalDays;
+    var months = Math.Ceiling(days / 30) + 2;
+    // max and mins and such
+    var amountPerMonth = 20;
+    var min = 40;
+    var max = 200;
+
+    var offer = amountPerMonth * months;
+    offer = Math.Max(min, offer);
+    offer = Math.Min(offer, max);
 }
 
 <div id="myCarousel" class="container-wrapper container-top container-wrapper-home carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        @foreach (var item in ViewBag.CarItems)
-        {
-            <li data-target="#myCarousel" data-slide-to="@Html.Raw(counter)" @if (counter == 0) { @Html.Raw("class=\"active\""); }></li>
-            counter++;
-        }
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
     </ol>
     <div class="carousel-inner">
-        @{ counter = 0; }
-        @foreach (var item in ViewBag.CarItems)
-        {
-            <div class="item @if(counter++ == 0) { @Html.Raw("active"); }">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <div class="row">
-                            <div class="col-md-6 text-left">
-                                <h1>@Html.Raw(item["title"])</h1>
-                                <p class="lead">@Html.Raw(item["lead"])</p>
-                                <p class="btn btn-lg btn-@Html.Raw(item["btn"])">Learn More</p>
-                            </div>
-                            <div class="col-md-6">
-                                <img src="@Html.Raw(item["img"])" />
-                            </div>
+        <div class="item active">
+            <div class="container">
+                <div class="carousel-caption">
+                    <div class="row">
+                        <div class="col-md-6 text-right">
+                            <h1>The world's most powerful stylist search engine</h1>
+                            <p class="lead">Using patented technology, we'll bring clients to you.</p>
+                            <p>
+                            <a class="btn btn-lg btn-success">Get Started</a>
+                            <a class="btn btn-lg btn-info">View Features</a>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="~/img/home-feature-1.png" />
                         </div>
                     </div>
                 </div>
             </div>
-        }
+        </div>
+        <div class="item">
+            <div class="container">
+                <div class="carousel-caption">
+                    <ul class="unstyled center list-circle-icons">
+                        <li class=""><i class="fa fa-comments"></i></li>
+                        <li class="red"><i class="fa fa-columns"></i></li>
+                        <li class="green"><i class="fa fa-user"></i></li>
+                        <li class="purple"><i class="fa fa-envelope"></i></li>
+                    </ul>
+                    <h1>Become an early adopter</h1>
+                    <p>and get <strong>$@offer</strong>!<sup>&dagger;</sup> Yep, we're that serious.</p>
+                    <p class="btn btn-lg btn-info">Get Started</p>
+                </div>
+            </div>
+        </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="fa fa-chevron-left"></span></a>
     <a class="right  carousel-control" href="#myCarousel" data-slide="next"><span class="fa fa-chevron-right"></span></a>
 </div>
 
 <div class="clear"></div>
-
-@section scripts {
-    <script src="~/Scripts/bootstrap.js"></script>
-    <script src="~/Scripts/zion.js"></script>
-}
