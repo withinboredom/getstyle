@@ -1,16 +1,5 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-
-    ViewBag.CarItems = new System.Collections.Generic.List<System.Collections.Generic.Dictionary<string, string>>();
-
-    var item1 = new System.Collections.Generic.Dictionary<string, string>();
-    item1.Add("lead", "A fantastic template with a clean layout, efficient code and smarter features to make it easy for your new website.");
-    item1.Add("btn", "success");
-    item1.Add("href", "/");
-    item1.Add("img", "/img/home-feature-1.png");
-    item1.Add("title", "Test title");
-
-    ViewBag.CarItems.Add(item1);
 }
 
 @Html.Partial("_Carousel")
