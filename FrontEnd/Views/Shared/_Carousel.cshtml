@@ -26,8 +26,8 @@
                             <h1>The world's most powerful stylist search engine</h1>
                             <p class="lead">Using patented technology, we'll bring clients to you.</p>
                             <p>
-                            <a class="btn btn-lg btn-success">Get Started</a>
-                            <a href="#features" class="btn btn-lg btn-info">View Features</a>
+                                @Html.ActionLink("Get Started", "Ask", "Home", new { @class = "btn btn-lg btn-success" })
+                                <a href="#features" class="btn btn-lg btn-info">View Features</a>
                             </p>
                         </div>
                         <div class="col-md-6">
@@ -48,7 +48,7 @@
                     </ul>
                     <h1>Become an early adopter</h1>
                     <p>and get <strong>$@offer</strong>!<sup>&dagger;</sup> Yep, we're that serious.</p>
-                    <p class="btn btn-lg btn-info">Get Started</p>
+                    @Html.ActionLink("Get Started", "Ask", "Home", new { @class = "btn btn-lg btn-info" })
                 </div>
             </div>
         </div>

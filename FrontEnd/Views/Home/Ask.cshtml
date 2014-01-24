@@ -1,12 +1,24 @@
 ﻿@{
     ViewBag.Title = "Get an Invite";
+    
+    var launch = new DateTime(2014, 09, 30);
+    var days = (launch - DateTime.Now).TotalDays;
+    var months = Math.Ceiling(days / 30) + 2;
+    // max and mins and such
+    var amountPerMonth = 20;
+    var min = 40;
+    var max = 200;
+
+    var offer = amountPerMonth * months;
+    offer = Math.Max(min, offer);
+    offer = Math.Min(offer, max);
 }
 
 <div id="signupForm">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h1>Sign up to get early access and $200<sup>&dagger;</sup></h1>
+                <h1>Sign up to get early access and $@offer<sup>&dagger;</sup></h1>
             </div>
         </div>
         <div class="row">
