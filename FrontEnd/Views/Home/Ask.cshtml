@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "Get an Invite";
+}
+
+<div id="signupForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Sign up to get early access and $200<sup>&dagger;</sup></h1>
+            </div>
+        </div>
+        <div class="row">
+            <form class="form-horizontal" id="signup">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <label class=" control-label" for="firstName">First Name</label>
+                        <div class="controls">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" required id="firstName" placeholder="Jessie" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label" for="lastName">Last Name</label>
+                        <div class="controls">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" required id="lastName" placeholder="Flanders" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class=" control-label" for="email">Email</label>
+                        <div class="controls">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="email" required id="email" placeholder="jessie@example.com" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span class="help-block well">It's important to use your real address so that we can contact you when an invitation becomes available.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h3>A little about you</h3>
+                    <label class="radio ">
+                        <input type="radio" value="stylist" name="user_type" checked />
+                        <span></span> Hair Stylist
+                    </label>
+                    <label class="radio ">
+                        <input type="radio" value="esthetician" name="user_type" />
+                        <span></span> Esthetician
+                    </label>
+                    <label class="radio ">
+                        <input type="radio" value="makeup" name="user_type" />
+                        <span></span> Makeup Artist
+                    </label>
+                    <label class="radio ">
+                        <input type="radio" value="massage" name="user_type" />
+                        <span></span> Massage Therapist
+                    </label>
+                    <label class="radio ">
+                        <input type="radio" value="manager" name="user_type" />
+                        <span></span> Salon Manager
+                    </label>
+                    <label class="radio ">
+                        <input type="radio" value="owner" name="user_type" />
+                        <span></span> Salon Owner
+                    </label>
+                    <br />
+                    <button type="submit" data-loading-text="Please Wait" class="btn btn-success">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="success" class="container-wrapper-hills" style="display:none" >
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 center col-md-offset-3">
+                <h1>
+                    Woah! That's pretty awesome!
+                </h1>
+                <p>We can't wait to have you on board, we'll send you a formal invitation as soon as we can!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="error" class="container-wrapper-sky" style="display:none">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 center col-md-offset-3">
+                <h1>Oops!</h1>
+                <p>It looks like you've already signed up, don't worry, we'll send you an invite soon!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            highlight: function (element) {
+                $(element).closest('.form-group').addClass('has-error');
+            },
+            unhighlight: function (element) {
+                $(element).closest('.form-group').removeClass('has-error');
+            },
+            errorElement: 'span',
+            errorClass: 'help-block',
+            errorPlacement: function (error, element) {
+                if (element.parent('.input-group').length) {
+                    error.insertAfter(element.parent());
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+        $("#signup").validate();
+
+        $(document).ready(function () {
+            $("#signup").submit(function (e) {
+                e.preventDefault();
+
+                var client = new WindowsAzure.MobileServiceClient("https://getstyle.azure-mobile.net/", "NrLyZbnCdPgYQeltTgryLSmEdGvlxL32");
+
+                var item = {
+                    first_name: $("#firstName").val(),
+                    last_name: $("#lastName").val(),
+                    email_address: $("#email").val(),
+                    user_type: $("input[name='user_type']:checked").val()
+                };
+
+                $(".btn").button("loading");
+
+                client.getTable("invites").insert(item).then(function (result) {
+                    $("#signupForm").slideUp();
+                    $("#success").delay(500).slideDown();
+                },
+                function (error) {
+                    $("#signupForm").slideUp();
+                    $("#error").slideDown();
+                });
+            });
+        });
+    </script>
+}

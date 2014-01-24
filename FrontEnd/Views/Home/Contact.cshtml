@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Contact";
 
-    ViewBag.TopColor = "winter";
+    ViewBag.TopColor = "purple";
 }
 
 @Html.Partial("_TopRow")
@@ -9,3 +9,39 @@
 @Html.Partial("_googleMapSimple")
 
 @Html.Partial("_messageForm")
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#send").submit(function (e) {
+                e.preventDefault();
+
+                var client = new WindowsAzure.MobileServiceClient("https://getstyle.azure-mobile.net/", "NrLyZbnCdPgYQeltTgryLSmEdGvlxL32");
+
+                var item = {
+                    name: $("#inputName").val(),
+                    email: $("#inputEmail").val(),
+                    message: $("#inputMessage").val()
+                };
+
+                $(".btn").button("loading");
+
+                client.getTable('contact').insert(item).then(function (complete) {
+                    $("#inputName").val("");
+                    $("#inputEmail").val("");
+                    $("#inputMessage").val("");
+                    $(".btn").button("reset");
+
+                    $("#success_mode").slideDown();
+                    console.log("Done");
+                }, function (error) {
+                    console.log("Failure");
+                    $(".btn").button("reset");
+                    $(".btn").button("Failed to send");
+                });
+
+                return false;
+            });
+        });
+    </script>
+}

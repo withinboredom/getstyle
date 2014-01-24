@@ -352,6 +352,7 @@
     <Content Include="Views\Account\View1.cshtml" />
     <Content Include="Views\Shared\_Carousel.cshtml" />
     <Content Include="Views\Shared\_CallOuts.cshtml" />
+    <Content Include="Views\Home\Ask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
