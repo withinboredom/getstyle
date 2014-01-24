@@ -259,6 +259,8 @@
     <Content Include="img\portfolio-bg.png" />
     <Content Include="img\portfolio-macbook-reflection.png" />
     <Content Include="img\portfolio-macbook.png" />
+    <Content Include="img\profiles\keesha.jpg" />
+    <Content Include="img\profiles\rob.jpg" />
     <Content Include="img\radio-2x.fw.png" />
     <Content Include="img\radio-2x.png" />
     <Content Include="img\radio.png" />

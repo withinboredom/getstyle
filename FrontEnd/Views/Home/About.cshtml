@@ -1,15 +1,21 @@
 ﻿@{
     ViewBag.Title = "About";
 
-    ViewBag.TopColor = "mint";
+    ViewBag.TopColor = "purple";
 
     ViewBag.Heading = new System.Collections.Generic.List<string>();
     ViewBag.Content = new System.Collections.Generic.List<string>();
     
-    ViewBag.Heading.Add("Heading 1");
-    ViewBag.Heading.Add("Heading 2");
-    ViewBag.Content.Add("This is content");
-    ViewBag.Content.Add("This is second content");
+    ViewBag.Heading.Add("Our Mission");
+    ViewBag.Heading.Add("The Company");
+    ViewBag.Content.Add(@"
+Our mission is simple, to bring the stylists that use our service as many clients as possible. We understand that people may have tried this in the past
+but we've come prepared with better technology and a better user experience. We aim to be the thing you've always missed, just never knew it.
+");
+    ViewBag.Content.Add(@"
+Get Style.co was founded with <a href=""#Team"">Keesha's</a> desire to fill her seat, even during slow periods. <a href=""#Team"">Robert</a>, a very
+experienced programmer, set out to make this possible for everyone. Together, they are creating an app designed by a hair stylist to help other hairstylists.
+");
 }
 
 @Html.Partial("_TopRow")
